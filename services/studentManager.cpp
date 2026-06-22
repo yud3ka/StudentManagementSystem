@@ -26,7 +26,7 @@ void StudentManager::displayAllStudents() {
     // Kiểm tra xem tủ có trống không
     if (studentList.empty()) {
         cout << "Danh sach hien dang chua co ai!\n";
-        return; // Thoát hàm luôn, khỏi in
+        return; // Thoát hàm
     }
 
     for (size_t i = 0; i < studentList.size(); i++) {
