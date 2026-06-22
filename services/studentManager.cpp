@@ -1,15 +1,19 @@
 #include "studentManager.h"
-
-// 1. Logic cho hàm thêm sinh viên
+#include "validator.h"
 void StudentManager::addStudent() {
     cout << "\n=== THEM SINH VIEN MOI ===\n";
     
     string id, name;
-    
-    cout << "Nhap Ma SV: ";
+do {
+    cout << "Nhap Ma SV (10 ky tu): ";
     cin >> id;
-    cin.ignore();
-    
+    if (!Validator::isValidId(id)) {
+        cout << "=> Loi: Ma SV khong hop le hoac sai do dai. Vui long nhap lai!\n";
+    }
+} while (!Validator::isValidId(id)); 
+
+cin.ignore();
+
     cout << "Nhap Ho va Ten: ";
     getline(cin, name);
 
