@@ -45,8 +45,9 @@ int main()
     {
         int choice = menu.choose();
 
-        // ---- Add student ----
-        if (choice == 0)
+        switch (choice)
+        {
+        case 0:
         {
             string id, name, major;
             double gpa;
@@ -54,7 +55,11 @@ int main()
             cout << "Enter name: "; getline(cin, name);
             cout << "Enter major: "; getline(cin, major);
             cout << "Enter GPA: ";
-            if (!(cin >> gpa)) { cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n'); cout << "Invalid GPA.\n"; continue; }
+            if (!(cin >> gpa)) { 
+                cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+                cout << "Invalid GPA.\n"; 
+                continue; 
+            }
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             if (!val.isValidID(id) || !val.isValidName(name) || !val.isValidName(major) || !val.isValidGPA(gpa))
             {
@@ -63,21 +68,25 @@ int main()
             }
             studentManager.addStudent(Student(id, name, major, gpa));
             cout << "Student added.\n";
+            break;
         }
-        // ---- Show students ----
-        else if (choice == 1)
+        case 1:
         {
             studentManager.showAllStudents();
+            break;
         }
-        // ---- Add subject ----
-        else if (choice == 2)
+        case 2:
         {
             string id, name;
             int credits;
             cout << "Subject ID: "; getline(cin, id);
             cout << "Subject name: "; getline(cin, name);
             cout << "Credits: ";
-            if (!(cin >> credits)) { cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n'); cout << "Invalid.\n"; continue; }
+            if (!(cin >> credits)) { 
+                cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+                cout << "Invalid.\n"; 
+                continue; 
+            }
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             if (!val.isValidID(id) || !val.isValidName(name) || !val.isValidCredits(credits))
             {
@@ -86,14 +95,14 @@ int main()
             }
             courseManager.addSubject(Subject(id, name, credits));
             cout << "Subject added.\n";
+            break;
         }
-        // ---- Show subjects ----
-        else if (choice == 3)
+        case 3:
         {
             courseManager.showAllSubjects();
+            break;
         }
-        // ---- Add semester ----
-        else if (choice == 4)
+        case 4:
         {
             string id, name;
             cout << "Semester ID: "; getline(cin, id);
@@ -105,14 +114,14 @@ int main()
             }
             courseManager.addSemester(Semester(id, name));
             cout << "Semester added.\n";
+            break;
         }
-        // ---- Show semesters ----
-        else if (choice == 5)
+        case 5:
         {
             courseManager.showAllSemesters();
+            break;
         }
-        // ---- Add department ----
-        else if (choice == 6)
+        case 6:
         {
             string id, name;
             cout << "Department ID: "; getline(cin, id);
@@ -124,14 +133,14 @@ int main()
             }
             courseManager.addDepartment(Department(id, name));
             cout << "Department added.\n";
+            break;
         }
-        // ---- Show departments ----
-        else if (choice == 7)
+        case 7:
         {
             courseManager.showAllDepartments();
+            break;
         }
-        // ---- Add lecturer ----
-        else if (choice == 8)
+        case 8:
         {
             string id, name, title, deptID;
             cout << "Lecturer ID: "; getline(cin, id);
@@ -145,14 +154,14 @@ int main()
             }
             courseManager.addLecturer(Lecturer(id, name, title, deptID));
             cout << "Lecturer added.\n";
+            break;
         }
-        // ---- Show lecturers ----
-        else if (choice == 9)
+        case 9:
         {
             courseManager.showAllLecturers();
+            break;
         }
-        // ---- Add course ----
-        else if (choice == 10)
+        case 10:
         {
             string courseID, subjectID, semesterID, lecturerID;
             int maxStudents;
@@ -161,7 +170,11 @@ int main()
             cout << "Semester ID: "; getline(cin, semesterID);
             cout << "Lecturer ID: "; getline(cin, lecturerID);
             cout << "Max students: ";
-            if (!(cin >> maxStudents)) { cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n'); cout << "Invalid.\n"; continue; }
+            if (!(cin >> maxStudents)) { 
+                cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+                cout << "Invalid.\n"; 
+                continue; 
+            }
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             if (!val.isValidID(courseID) || !val.isValidID(subjectID) || !val.isValidID(semesterID) || !val.isValidID(lecturerID) || !val.isValidPositiveInt(maxStudents))
             {
@@ -170,14 +183,14 @@ int main()
             }
             courseManager.addCourse(Course(courseID, subjectID, semesterID, lecturerID, maxStudents));
             cout << "Course added.\n";
+            break;
         }
-        // ---- Show courses ----
-        else if (choice == 11)
+        case 11:
         {
             courseManager.showAllCourses();
+            break;
         }
-        // ---- Add enrollment ----
-        else if (choice == 12)
+        case 12:
         {
             string enrollmentID, studentID, courseID, date;
             cout << "Enrollment ID: "; getline(cin, enrollmentID);
@@ -191,22 +204,30 @@ int main()
             }
             courseManager.addEnrollment(Enrollment(enrollmentID, studentID, courseID, date));
             cout << "Enrollment added.\n";
+            break;
         }
-        // ---- Show enrollments ----
-        else if (choice == 13)
+        case 13:
         {
             courseManager.showAllEnrollments();
+            break;
         }
-        // ---- Add grade ----
-        else if (choice == 14)
+        case 14:
         {
             string enrollmentID;
             double mid, finalExam;
             cout << "Enrollment ID: "; getline(cin, enrollmentID);
             cout << "Midterm score: ";
-            if (!(cin >> mid)) { cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n'); cout << "Invalid.\n"; continue; }
+            if (!(cin >> mid)) { 
+                cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+                cout << "Invalid.\n"; 
+                continue; 
+            }
             cout << "Final exam score: ";
-            if (!(cin >> finalExam)) { cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n'); cout << "Invalid.\n"; continue; }
+            if (!(cin >> finalExam)) { 
+                cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+                cout << "Invalid.\n"; 
+                continue; 
+            }
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             if (!val.isValidID(enrollmentID) || !val.isValidScore(mid) || !val.isValidScore(finalExam))
             {
@@ -215,22 +236,30 @@ int main()
             }
             courseManager.addGrade(Grade(enrollmentID, mid, finalExam));
             cout << "Grade added.\n";
+            break;
         }
-        // ---- Show grades ----
-        else if (choice == 15)
+        case 15:
         {
             courseManager.showAllGrades();
+            break;
         }
-        // ---- Add attendance ----
-        else if (choice == 16)
+        case 16:
         {
             string enrollmentID;
             int present, absent;
             cout << "Enrollment ID: "; getline(cin, enrollmentID);
             cout << "Present days: ";
-            if (!(cin >> present)) { cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n'); cout << "Invalid.\n"; continue; }
+            if (!(cin >> present)) { 
+                cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+                cout << "Invalid.\n"; 
+                continue; 
+            }
             cout << "Absent days: ";
-            if (!(cin >> absent)) { cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n'); cout << "Invalid.\n"; continue; }
+            if (!(cin >> absent)) { 
+                cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+                cout << "Invalid.\n"; 
+                continue; 
+            }
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             if (!val.isValidID(enrollmentID) || !val.isValidPositiveInt(present) || !val.isValidPositiveInt(absent))
             {
@@ -239,16 +268,15 @@ int main()
             }
             courseManager.addAttendance(Attendance(enrollmentID, present, absent));
             cout << "Attendance added.\n";
+            break;
         }
-        // ---- Show attendances ----
-        else if (choice == 17)
+        case 17:
         {
             courseManager.showAllAttendances();
+            break;
         }
-        // ---- Reports ----
-        else if (choice == 18)
+        case 18:
         {
-            // sub-menu for reports
             Menu reportMenu("REPORTS");
             reportMenu << "Student list"
                        << "Course list"
@@ -256,16 +284,16 @@ int main()
                        << "Grade report"
                        << "Attendance report"
                        << "Back";
+            
             int rchoice = reportMenu.choose();
             if (rchoice == 0) report.showStudentList(studentManager.getStudents());
             else if (rchoice == 1) report.showCourseList(courseManager.getCourses());
             else if (rchoice == 2) report.showTopStudents(studentManager.getStudents());
             else if (rchoice == 3) report.showGradeReport(courseManager.getGrades());
             else if (rchoice == 4) report.showAttendanceReport(courseManager.getAttendances());
-            // else back
+            break;
         }
-        // ---- Save data ----
-        else if (choice == 19)
+        case 19:
         {
             fileManager.saveStudents(studentManager.getStudents());
             fileManager.saveCourses(courseManager.getCourses());
@@ -274,9 +302,9 @@ int main()
             fileManager.saveGrades(courseManager.getGrades());
             fileManager.saveAttendances(courseManager.getAttendances());
             cout << "All data saved.\n";
+            break;
         }
-        // ---- Load data ----
-        else if (choice == 20)
+        case 20:
         {
             fileManager.loadStudents(studentManager.getStudents());
             fileManager.loadCourses(courseManager.getCourses());
@@ -285,16 +313,18 @@ int main()
             fileManager.loadGrades(courseManager.getGrades());
             fileManager.loadAttendances(courseManager.getAttendances());
             cout << "All data loaded.\n";
-        }
-        // ---- Exit ----
-        else if (choice == 21)
-        {
-            cout << "Goodbye!\n";
             break;
         }
-        else
+        case 21:
+        {
+            cout << "Goodbye!\n";
+            return 0;
+        }
+        default:
         {
             cout << "Invalid choice.\n";
+            break;
+        }
         }
     }
 
